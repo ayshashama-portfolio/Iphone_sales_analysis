@@ -2,8 +2,6 @@
 
 An end-to-end Python analysis of one week of masked order logs from a phone and accessories store (1–7 March 2021: 581 orders, 1,349 items, 95 products, 525 customers). It finds the best-selling products, the busiest hours and the products customers buy together.
 
-🌐 **Part of my data analytics portfolio:** [ayshashamamusamil.netlify.app](https://ayshashamamusamil.netlify.app/)
-
 ## Tech Skills
 
 ![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
