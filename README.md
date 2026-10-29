@@ -1,68 +1,128 @@
-## Iphone_sales_analysis 
-### Project Overview
-This project presents a detailed exploratory analysis of transactional sales data using Python. The goal is to understand product performance, customer activity, and time-based purchasing patterns through structured data preprocessing and meaningful visualizations. The analysis focuses on transforming raw transaction records into actionable insights that can support business and retail decision-making. [SourceCode](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/main.py) 
+# iPhone Store Sales Transaction Analysis
 
-### Data Sources
-The dataset used in this project is a masked transactional CSV file containing sales records.It includes details such as transaction timestamps, customer names, emails and purchased products with 582 entries. Sensitive information has been anonymized while retaining the structure required for realistic analysis. 
-* **Initial Data File:** [Source](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/initial_Order_details(masked).csv)
-* **Processed Data File:** [Source](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/after_Order_details(masked).csv)
+An end-to-end Python analysis of one week of masked order logs from a phone and accessories store (1–7 March 2021: 581 orders, 1,349 items, 95 products, 525 customers). It finds the best-selling products, the busiest hours and the products customers buy together.
 
-**Changes in the Processed Data File:**
-The final, processed data file (`after_Order_details(masked).csv`) reflects the transformations applied in the preprocessing phase, which were critical for analysis reliability:
-* **Noise Elimination (Temporal Data):** The removal of records where date conversion failed ensures all remaining transactions have a valid time stamp, eliminating **temporal noise** and guaranteeing the reliability of all hour, day, and week-based analyses.
-* **Data Integrity (Duplicates):** The elimination of duplicate entries prevents statistical skew, ensuring that metrics like total sales counts and product frequency are not improperly inflated by redundant records.
-* **Product Parsing Consistency:** Standardization of the product separator (e.g., replacing `|` with `,`) guarantees that products are consistently split and counted, which is fundamental for accurate Market Basket Analysis calculations.
-* **Structural Readiness:** The underlying dataset structure is prepared for advanced analysis by converting the raw time string into a native datetime object, making all subsequent feature engineering (like extracting `Hour` or `Weekday`) robust and error-free.
-### Tools Used
-* Python – Core programming language
-* Visual Studio Code – Development environment
-* Pandas – Data cleaning, transformation, and aggregation
-* NumPy – Supporting numerical operations
-* Matplotlib & Seaborn – Data visualization
-* Windows PowerShell – For running scripts and environment management
-* CSV File – Source data format
+## Tech Skills
 
-### Data Preprocessing & Feature Engineering
-The following steps were performed to prepare the raw transaction logs for analysis:
-1. **Data Quality Enforcement:** Removed exact duplicate transaction entries and dropped records where the `Transaction Date` was invalid (missing or unconvertible).
-2. **Field Standardization:** Cleaned column headers by stripping whitespace and harmonized product delimiters by replacing pipe characters `|` with commas `,` for uniform parsing.
-3. **Temporal Feature Creation:** Converted the raw `Transaction Date` to a datetime object, then generated analytical features like Hour, Weekday Name, and ISO Week Number.
-4. **Product Normalization:** Standardized the product list by converting all names to lowercase and stripping internal whitespace.
-5. **Structural Transformation:** Unnested the dataset, converting the format from one row per transaction to one row per item, which is the foundational structure required for Market Basket Analysis.
+![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge)
+![Seaborn](https://img.shields.io/badge/Seaborn-4C72B0?style=for-the-badge)
+![Market Basket Analysis](https://img.shields.io/badge/Market%20Basket%20Analysis-2E8B57?style=for-the-badge)
+![Data Cleaning](https://img.shields.io/badge/Data%20Cleaning-FF6C61?style=for-the-badge)
+![Time Analysis](https://img.shields.io/badge/Time%20Analysis-8A2BE2?style=for-the-badge)
 
-### Exploratory Data Analysis
-The analysis explores the following aspects of the data:
-* Which products are sold most frequently?
-* How transaction volume varies across different hours of the day?
-* Differences in transaction counts across weekdays
-* Commonly co-purchased product combinations
-* Sales intensity by weekday and hour using a heatmap
-* Distribution of basket sizes (items per transaction)
-* Identification of the most active customers
+## Problem
 
-### Data Analysis
-Some interesting features worked during this project are:
-* Temporal Segmentation: Analyzed sales frequency across different hours and days of the week to understand peak times.
-* Product Performance Metrics: Calculated the frequency count for every individual product to identify top sellers.
-* Market Basket Analysis: Used the Apriori algorithm foundation (by generating combinations) to find the Top 10 co-purchased product pairs.
-* Basket Size Distribution: Calculated the number of items per transaction to visualize customer purchasing habits.
-* Weekly/Hourly Sales Heatmap: Visualized the intensity of item sales across a Weekday vs. Hour grid to pinpoint critical operational windows.
+A store has a raw export of orders: customer, email, a list of products in one text field, and a timestamp. Managers want to use it to plan stock, staffing and promotions, but in this form it can't answer:
 
-### Results
-The Analysis results are summarized as follows:
-1. `Product_75` is the single most frequently purchased product. [See visualization](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/Visualizations/Top_15_Sold_Products.png)
-2. Sales activity consistently peaks during `11am to 12pm` across most days. [See visualization](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/Visualizations/Transactions%20per%20Hour.png)
-3. `Saturday` and `Wednesday` show the highest total number of transactions. [See visualization](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/Visualizations/Count%20of%20Transactions%20per%20Weekday.png)
-4. The strongest co-purchase relationship exists between `Product_27` and `Product_63`, indicating a high potential for cross-selling. [See visualization](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/Visualizations/Top%2010%20Co-purchased%20Product%20Pairs.png)
-5. Most customers engage in small transactions, with the majority of baskets containing `1 to 4` items. [See visualization](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/Visualizations/Distribution%20of%20Basket%20Size.png)
-6. The highest combined volume of items sold occurs on Saturday between `22nd & 23rd Hour`. [See visualization](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/Visualizations/Items%20Sold%20by%20Weekday%20and%20Hour.png)
-7. The customer `Person_470` is the most active shopper, accounting for 5 transactions, demonstrating a clear leader in purchase frequency. [See visualization](https://github.com/ayshashama-portfolio/Iphone_sales_analysis/blob/main/Visualizations/Top%2015%20Most%20Active%20Customers.png)
+1. Which products sell most, and which ones are **bought together**?
+2. **When** do customers order — which days and which hours?
+3. How large are baskets, and how many customers **come back**?
 
-### Recommendations
-Based on the findings from this analysis:
-1. High-selling products should be prioritized for inventory planning.
-2. Peak transaction hours can be targeted for staffing and promotions.
-3. Frequently co-purchased products can be bundled to increase sales.
-4. Active customers may be suitable candidates for loyalty programs.
-5. Basket size patterns can guide upselling and cross-selling strategies.
-   
+## Solution
+
+A reproducible Python pipeline ([`src/sales_analysis.py`](src/sales_analysis.py)) that turns the raw export into a clean one-row-per-item table ([`data/processed/order_items_clean.csv`](data/processed/order_items_clean.csv)) and produces 7 charts.
+
+**Data preprocessing and feature engineering**
+
+1. **Data quality:** stripped whitespace from headers, removed duplicate orders, and dropped rows with an invalid date.
+2. **Correct date parsing:** dates are day-first (`01/03/2021` = 1 March 2021), so they are parsed with an explicit `DD/MM/YYYY` format.
+3. **Product standardisation:** products are separated by `,`, `|` or `;`. All three are unified, then split into a clean list with consistent case and no blanks.
+4. **Time features:** date, hour of day and weekday.
+5. **Structural transformation:** exploded the data from one row per order to one row per item, the structure needed for product counts and market basket analysis.
+6. **Market basket analysis:** generated every product pair inside each order (`itertools.combinations`) and counted the most frequent pairs.
+
+## Key Metrics Tracked
+
+- Units sold per product (top 15)
+- Orders per day and per hour; items sold by day × hour
+- Top 10 co-purchased product pairs
+- Basket size (products per order), including bulk orders of 8+ products
+- Orders per customer (one-time vs repeat)
+
+## Screenshots
+
+### What sells, and what sells together
+<p>
+<img src="screenshots/top_15_products.png" width="49%" />
+<img src="screenshots/top_10_product_pairs.png" width="49%" />
+</p>
+
+### When customers order
+<p>
+<img src="screenshots/orders_per_day.png" width="49%" />
+<img src="screenshots/orders_per_hour.png" width="49%" />
+</p>
+<img src="screenshots/items_by_day_and_hour.png" width="98%" />
+
+### Baskets and customers
+<p>
+<img src="screenshots/basket_size_distribution.png" width="49%" />
+<img src="screenshots/orders_per_customer.png" width="49%" />
+</p>
+
+## Key Insights Found
+
+- **Three products drive over a fifth of sales.** PRODUCT_75 (121 units), PRODUCT_63 (97) and PRODUCT_27 (76) make up 21.8% of all units across 95 products.
+- **There is a clear cross-sell pair.** PRODUCT_27 and PRODUCT_63 appear together in 28 orders, the strongest pair, followed by PRODUCT_68 + PRODUCT_75 (20).
+- **Orders peak twice a day.** Demand rises to a midday peak at 12:00 (51 orders) and builds again in the evening to 23:00 (51 orders). 23.6% of orders arrive between 21:00 and midnight, and only 6.2% between midnight and 08:00.
+- **The weekend and midweek are busiest.** Sunday 7 March had 144 orders and Wednesday 3 March had 117, against only 35–38 on Monday and Tuesday.
+- **A few bulk orders carry a lot of volume.** 59.6% of orders contain a single product, but 32 orders of 8+ products (5.5% of orders, up to 47 items) account for 30.4% of all items. Most of them were placed late in the evening, which explains the hot spots on Friday at 21:00 and Sunday at 23:00 in the heatmap.
+- **Few customers return within the week.** 478 of 525 customers ordered once; 9.0% ordered more than once, and the most active (PERSON_470) placed 5 orders.
+
+## Recommendations
+
+1. **Keep PRODUCT_75, 63 and 27 in stock first**, since they carry over a fifth of unit sales.
+2. **Bundle PRODUCT_27 with PRODUCT_63** (and PRODUCT_68 with PRODUCT_75), or show them as "frequently bought together".
+3. **Staff and run promotions around 11:00–13:00 and 19:00–23:00**, and on Wednesdays and weekends.
+4. **Treat bulk buyers as a separate segment** with volume pricing or an account manager. Late-night bulk orders also need fulfilment ready the next morning.
+5. **Start a loyalty or second-order offer.** Only 9% of customers came back within the week.
+
+## Data Limitations
+
+- The data covers **one week**, so "busiest day" means a specific date, not a weekly pattern; more weeks are needed to confirm the weekday trend.
+- Names, emails and products are masked, and there are **no prices**, so revenue and margin cannot be analysed.
+- Pair counts show co-occurrence, not cause; support, confidence and lift would measure association strength.
+
+## What changed in v2
+
+v1 parsed dates month-first, which spread this one-week file over seven months (3 January to 3 July) and produced weekday results for the wrong days. v2 parses dates day-first, adds the bulk-order and repeat-customer analysis, and writes a clean processed file from the script.
+
+## Tech Stack
+
+- **Python** — core language
+- **Pandas, NumPy** — cleaning, reshaping (explode), aggregation
+- **itertools, collections.Counter** — product-pair generation and counting
+- **Matplotlib, Seaborn** — visualisation
+- **VS Code, PowerShell** — development and running scripts
+
+## Project Structure
+
+```
+iphone_sales_analysis/
+├── data/
+│   ├── raw/order_details_masked.csv        # original export (one row per order)
+│   └── processed/order_items_clean.csv     # clean output (one row per item)
+├── src/sales_analysis.py                   # cleaning, features, basket analysis, charts
+├── screenshots/                            # charts generated by the script
+└── README.md
+```
+
+## How to Run
+
+```bash
+pip install pandas numpy matplotlib seaborn
+python src/sales_analysis.py
+```
+
+## Future Improvements
+
+- Calculate support, confidence and lift with the Apriori algorithm (`mlxtend`) to rank bundles properly.
+- Build a Power BI dashboard with product and hour slicers.
+- Add prices to measure revenue per product and basket value.
+
+## Author
+
+**Aysha Shama** · [GitHub](https://github.com/ayshashama-portfolio) · ayshashamamuzamil@gmail.com
